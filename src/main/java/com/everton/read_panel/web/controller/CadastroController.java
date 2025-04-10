@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/cadastro")
+@RequestMapping("/api/cadastro")
 public class CadastroController {
 
 	private final CadastroService cadastroService;
