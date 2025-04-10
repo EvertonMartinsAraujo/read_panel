@@ -1,6 +1,8 @@
 package com.everton.read_panel.service;
 
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.everton.read_panel.entity.Cadastro;
@@ -20,6 +22,7 @@ public class CadastroService {
 	public CadastroRepository getCadastroRepository() {
 		return cadastroRepository;
 	}
+	
 
 	
 	@Transactional
@@ -33,4 +36,10 @@ public class CadastroService {
 		return cadastroRepository.findById(id).orElseThrow( () -> new RuntimeException("Cadastro não encontrado"));
 	}
 	
+	@Transactional(readOnly = true)
+	public List<Cadastro> listar() {
+		return cadastroRepository.findAll();
+	}
+	
+
 }
