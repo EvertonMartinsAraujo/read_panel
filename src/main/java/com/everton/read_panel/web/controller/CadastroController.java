@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.everton.read_panel.entity.Cadastro;
@@ -19,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/cadastro")
+@CrossOrigin(origins = "http://localhost:5173") // Porta do Vite
 public class CadastroController {
 
 	private final CadastroService cadastroService;
@@ -47,4 +50,10 @@ public class CadastroController {
 		List<Cadastro> cad = cadastroService.listar();
 		return ResponseEntity.ok(cad);
 	}
+	
+    @GetMapping("/search")
+    public List<Cadastro> buscarPorTitulo(@RequestParam String titulo) {
+        return cadastroService.buscarPorTitulo(titulo);
+    }
 }
+
